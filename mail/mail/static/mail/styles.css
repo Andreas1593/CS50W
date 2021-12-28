@@ -1,0 +1,44 @@
+#compose-body {
+    margin-bottom: 10px;
+}
+
+.content {
+    width: 95%;
+}
+
+.description {
+    font-weight: bold;
+    width: 10%;
+    min-width: 100px;
+}
+
+.email {
+    border: 1px solid black;
+    margin-bottom: 12px;
+    padding-top: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.email-body {
+    white-space: pre-wrap;
+}
+
+.email-buttons {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.read {
+    background-color: lightgrey;
+}
+
+.row-div {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+textarea {
+    min-height: 400px;
+}
