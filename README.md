@@ -1,4 +1,4 @@
-# CS50x
+# CS50W
 *Harvard University CS50's Web Programming with Python and JavaScript*
 
 ## Search
@@ -60,9 +60,9 @@ Your task in this project is to expand on this site, creating your own front end
 
 Your website must meet the following requirements.
 
-- *Pages.* Your website should have at least three pages: one for Google Search, one for Google Image Search, and one for Google Advanced Search.
+- _Pages._ Your website should have at least three pages: one for Google Search, one for Google Image Search, and one for Google Advanced Search.
     - On the Google Search page, there should be links in the upper-right of the page to go to Image Search or Advanced Search. On each of the other two pages, there should be a link in the upper-right to go back to Google Search.
-- *Query Text.* On the Google Search page, the user should be able to type in a query, click “Google Search”, and be taken to the Google search results for that page.
+- _Query Text._  On the Google Search page, the user should be able to type in a query, click “Google Search”, and be taken to the Google search results for that page.
     - Like Google’s own, your search bar should be centered with rounded corners. The search button should also be centered, and should be beneath the search bar.
 Query Images. On the Google Image Search page, the user should be able to type in a query, click a search button, and be taken to the Google Image search results for that page.
 Query Advanced. On the Google Advanced Search page, the user should be able to provide input for the following four fields (taken from Google’s own advanced search options)
