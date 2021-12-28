@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+		<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+    <body>
+		<div class="alert alert-info" role="alert">
+			<div class="logo">CS50W Search</div>
+			<ul class="nav justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="./index.html">Search</a>
+				</li>
+			</ul>
+		</div>
+	
+        <form action="https://google.com/search" autocomplete="off">
+            <input type="text" name="q" class="searchfield">
+            <input type="submit" value="Google Image Search" class="submit">
+			<input type="hidden" name="tbm" value="isch">
+        </form>
+    </body>
+</html>
