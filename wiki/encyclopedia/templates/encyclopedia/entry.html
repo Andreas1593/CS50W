@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    {% if entryContent|safe %}
+        <a href="{% url 'edit' title %}"><button class="btn btn-danger btn-lg edit">Edit</button></a>
+        <div>{{ entryContent|safe }}</div>
+    {% else %}
+        {% if matches %}
+            <h3>Did you mean...</h>
+            {% for match in matches %}
+                <li><a href="{% url 'entry' match %}">{{ match }}</a></li>
+            {% endfor %}
+        {% else %}
+            <h3>No result.</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
