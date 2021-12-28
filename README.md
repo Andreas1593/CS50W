@@ -5,9 +5,9 @@
 
 Design an eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”
 
-![Listings](https://github.com/Andreas1593/CS50W/tree/Project-2/commerce/images/listings.png?raw=true)
+![Listings](https://github.com/Andreas1593/CS50W/blob/Project-2/commerce/images/listings.png?raw=true)
 
-![Listing](https://github.com/Andreas1593/CS50W/tree/Project-2/commerce/images/listing.png?raw=true)
+![Listing](https://github.com/Andreas1593/CS50W/blob/Project-2/commerce/images/listing.png?raw=true)
 
 ### Getting Started
 
