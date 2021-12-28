@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+{% block title %}Auctions | Create Listing{% endblock %}
+
+{% block body %}
+    <h2>Create Listing</h2>
+    <div class="container-fluid ml-2">
+        <form action="{% url 'createListing' %}" method="post">
+            {% csrf_token %}
+            {% for element in form %}
+                <div class="row">
+                    {% if element.label == "StartBid" %}
+                        <p>Start Bid</p>
+                    {% elif element.label == "Image" %}
+                        <p>Image (URL)</p>
+                    {% else %}
+                        <p>{{ element.label }}</p>
+                    {% endif %}
+                </div>
+                <div class="row mt-0 mb-3">
+                    <p>{{ element }}</p>
+                </div>
+
+            {% endfor %}
+            <div class="row">
+                <input name="submit" type="submit" value="Create Listing" class="btn btn-success button">
+            </div>
+        </form>
+    </div>
+{% endblock %}

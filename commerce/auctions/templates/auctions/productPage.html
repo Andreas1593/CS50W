@@ -1,0 +1,122 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block title %}Auctions | Product{% endblock %}
+
+{% block body %}
+
+        <div class="container-fluid">
+
+            <div class="row justify-content-center">
+                    {% if listing.closed %}
+                        {% if user == listing.winner %}
+                            <h3 class="listingClosed">Congratulations! You won the Auction!</h3>
+                        {% else %}
+                            <h3 class="listingClosed">Listing closed.</h3>
+                        {% endif %}
+                    {% endif %}
+            </div>
+
+            <div class="row pb-2">
+                <div class="col-sm-4 img-wrapper">
+                {% if listing.image %}
+                    <img src="{{ listing.image }}" alt="{{ listing.title }}" class="img-lg">
+                {% else %}
+                    <img src="{% static 'auctions/images/no_picture_available.png' %}" alt="No Picture Available" class="img-lg">
+                {% endif %}
+                </div>
+                <div class="col-sm-5 details-wrapper">
+                    <h2 class="title">{{ listing.title }}</h2>
+                    <h5>Category: {{ listing.category }}</h5>
+                    {% if listing.currentBid %}
+                        <p class="bidText">Current Bid:</p>
+                        <p class="bidText">${{ listing.currentBid }}</p>
+                        <p>Current Bids: {{ listing.Bids.count }}</p>
+                    {% else %}
+                        <p class="bidText">Start Bid:</p>
+                        <p class="bidText">${{ listing.startBid }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-sm-3">
+                
+                    <p class="seller">Seller:</p>
+                    <p class="sellerName">{{ listing.user }}</p>
+                    <p class="date">{{ listing.created }}</p>
+
+                    <div class="buttons-wrapper">
+                        {% if user.is_authenticated %}
+                            <h4 class="error">{{ error }}</h4>
+
+                            {# Show 'Add to Watchlist' button if listing is not on watchlist #}
+                            {% if not onWatchlist %}
+                                <form action="{% url 'productPage' listing.listingID %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="addWatchlist" value="Add Watchlist" class="btn btn-warning watchlistButton">Add to Watchlist</button>
+                                </form>
+                            {# Show 'Remove from Watchlist' button if listing is already on watchlist #}
+                            {% else %}
+                                <form action="{% url 'productPage' listing.listingID %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="rmvWatchlist" value="Remove Watchlist" class="btn btn-danger watchlistButton">Remove from Watchlist</button>
+                                </form>
+                            {% endif %}
+            
+                            {% if not listing.closed %}
+                                {% if user != listing.user %}
+                                    {# 'Place Bid' button #}
+                                        <form action="{% url 'productPage' listing.listingID %}" method="POST" class="input-group">
+                                            {% csrf_token %}
+                                            <input name="bid" type="number" min=1 max=9999 step="0.01" required class="form-control">
+                                            <button type="submit" name="placeBid" value="Place Bid" class="btn btn-primary input-group-append bidButton">Place Bid</button>
+                                        </form>
+                                        
+                                {% else %}
+                                    {# 'Close Listing' button #}
+                                        <form action="{% url 'productPage' listing.listingID %}" method="POST" class="closeListingForm">
+                                            {% csrf_token %}
+                                            <button type="submit" name="close" value="Close Listing" class="btn btn-dark">Close Listing</button>
+                                        </form>
+                                {% endif %}
+            
+                            {% endif %}
+
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row descriptionBox">
+                <p class= "col-sm-12 itemDescription">Item Description:</p>
+                <p class= "col-sm-12">{{ listing.description }}</p>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5 col-md-6 col-12 pb-4">
+                    <h1 class="h1">Comments</h1>
+
+                {% if comments %}
+                    {% for comment in comments %}
+                    <div class="comment mt-4 text-justify">
+                        <h3 class="h3">{{ comment.user }}</h3> <span>- {{ comment.date }}</span> <br>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h2>No comments yet.</h2>
+                {% endif %}
+                
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                        <form class="form" action="{% url 'productPage' listing.listingID %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <h4 class="h4">Leave a comment</h4> <label for="message" style="color: rgb(184, 183, 183); display: block;">Message</label> {{ commentForm }}
+                            </div>
+                            <div class="form-group" class="form"> <button type="submit" id="post" class="btn" name="commentButton" value="Post Comment">Post Comment</button> </div>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+
+{% endblock %}
