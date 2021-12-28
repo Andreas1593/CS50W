@@ -52,7 +52,7 @@ How did that work? In this case, the ```action``` attribute on the ```form``` to
 
 Your task in this project is to expand on this site, creating your own front end for Google Search, as by exploring Google’s interface to identify what GET parameters it expects and adding the necessary HTML and CSS to your website.
 
-### Background
+### Getting Started
 
 *\[Download Distribution Code\]*
 
