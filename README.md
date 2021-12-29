@@ -1,9 +1,9 @@
 # Study together!
 #### Link: https://studytogetherapp.herokuapp.com/
 
-![Listings](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/study.gif?raw=true)
+![Screnshot 'Study'](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/study.gif)
 
-![Listings](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/mobile.gif?raw=true)
+![Screenshot mobile](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/mobile.gif)
 
 #### Description:
 
