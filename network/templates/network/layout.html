@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Sora&display=swap" rel="stylesheet">
+        <script src="{% static 'network/script.js' %}"></script>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{% url 'index' %}">Network</a>
+          
+            <div>
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item nav-item__user">
+                        <a class="nav-link" href="{% url 'profile' user.username %}"><strong id="user">{{ user.username }}</strong></a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'following' %}">Following</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+        
+        <div class="body">
+
+            {% block body %}
+            {% endblock %}
+            <div class="container-fluid">
+
+                {% for post in page_obj %}
+                    <div class="row justify-content-center">
+                        <div class="col col-sm-5 post" value="{{ post.id }}">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="{% url 'profile' post.user %}">{{ post.user }}</a>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col col-sm-10">
+                                            <p class="post__content">{{ post.content }}</p>
+                                        </div>
+                                        <div class="col col-sm-2 post__edit-button">
+                                            <!-- Allow editing only by the creator of the post -->
+                                            {% if post.user|stringformat:'s' == user.username|stringformat:'s' %}
+                                                <button class="btn btn-danger">Edit</button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-sm-8 post__timestamp">
+                                            <i>{{ post.datetime }}</i>
+                                        </div>
+                                        <div class="col col-sm-4 text-right" style="height: 1.5em;">
+                                            <button class="post__save-button btn btn-success">Save</button>
+                                            <button class="post__cancel-button btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col col-sm-1">
+                                            <!-- Check if user already likes the post -->
+                                            {% if post in likedPosts %}
+                                                <i class="fa fa-thumbs-up"></i>
+                                            {% else %}
+                                                <i class="fa fa-thumbs-up fa-thumbs-down"></i>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="col pl-0 like__text" id="_likeCounter-container{{ post.id }}">
+                                            {% include "network/partials/_likeCounter.html" with post=post %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col">
+                                            <a class="btn btn-link" data-toggle="collapse" href="#collapse{{ post.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                Comments (<span class="comment-count">{{ post.Comments.count }}</span>)
+                                            </a>
+                                            <div class="collapse" id="collapse{{ post.id }}">
+                                                <div id="_comment-container{{ post.id }}">
+                                                    {% include "network/partials/_comments.html" with comments=post.Comments.all %}
+                                                </div>
+                                                <div class="comment-form">
+                                                    {{ commentForm }}
+                                                </div>
+                                                <button type="button" class="btn btn-success post__comment-button">Post Comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+            
+        </div>
+
+        <!-- Show pagination on any page that displays posts -->
+        {% if page_obj %}
+        <nav id="pagination" aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                    <!-- "previous" sign and first page -->
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                    {% endif %}
+    
+                    {% if page_obj.number > 2 %}
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    {% endif %}
+    
+                    <!-- Current page -->
+                    <li class="page-item active" aria-current="page"><a class="page-link">{{ page_obj.number }}</a></li>
+    
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:-1 %}
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    {% endif %}
+    
+                    <!-- Last page and "next" sign-->
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                    {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+        
+        <script>
+
+        </script>
+    </body>
+</html>

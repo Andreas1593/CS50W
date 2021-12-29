@@ -1,0 +1,41 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center profile__header-row">
+        <div class="col col-sm-5">
+            <div class="card">
+                <div class="card-header profile__header">
+                    {% if user == profileUser %}
+                        Your Profile
+                    {% else %}
+                        <em>{{ profileUser.username }}</em>'s Profile
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ profileUser.Followers.count }} followers</p>
+                    <p class="card-text">{{ profileUser.Followees.count }} following</p>
+                    {% if followButton %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" id="followButton" class="btn btn-primary">{{ followButton }}</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <div class="row justify-content-center profile__all-posts-row">
+        <div class="col col-sm-5">
+            {% if user == profileUser %}
+                <div class="profile__all-posts">Your posts</em></div>
+            {% else %}
+                <div class="profile__all-posts"><em>{{ profileUser.username }}</em>'s Posts</div>
+            {% endif %}
+        </div>   
+    </div>
+</div>
+
+{% endblock %}

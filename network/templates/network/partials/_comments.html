@@ -1,0 +1,24 @@
+{% for comment in comments reversed %}
+<div class="row comment">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                {{ comment.user }}
+            </div>
+            <div class="card-body">
+                {{ comment.comment }}
+            </div>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="row comment">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                No comments yet.
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

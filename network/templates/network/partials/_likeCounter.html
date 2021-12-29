@@ -1,0 +1,5 @@
+{% if post.Likers.count == 1 %}
+    <p><span class="like__counter">{{ post.Likers.count }}</span> person likes this.</p>
+{% else %}
+    <p>{{ post.Likers.count }} persons like this.</p>
+{% endif %}

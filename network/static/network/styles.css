@@ -1,0 +1,207 @@
+html, body {
+    width: 100%;
+    height:100%;
+}
+
+body {
+    font-family: "Sora", Helvetica, sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 600%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.comment {
+    padding-bottom: 1em;
+}
+
+.comment .card-header {
+    background-color: rgb(231, 230, 230);
+}
+
+.comment-form {
+    padding-bottom: 1em;
+}
+
+.edit-post__textarea {
+    height: 7em !important;
+    margin-bottom: 1em;
+}
+
+.fa-thumbs-up {
+    font-size: 2em;
+    color: rgb(62, 62, 255);
+    cursor: pointer;
+}
+
+.fa-thumbs-up-active {
+    animation-name: like-button;
+    animation-duration: 1s;
+}
+
+@keyframes like-button {
+    0% {font-size: 2em;} 
+    70% {font-size: 2.2em;}
+    100% {font-size: 2em;}
+}
+
+.following__header {
+    background-image: linear-gradient(175deg, rgb(255, 255, 255), rgb(0, 229, 255));
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 20px;
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 1px 1px white;
+}
+
+.following__header-row {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.like__text {
+    height: 2.5em;
+    line-height: 2.5em;
+    font-size: 90%;
+    color: grey;
+}
+
+nav * {
+    color: white;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+    text-shadow: 2px 2px black;
+    font-size: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.nav-item {
+    margin-right: 0.5em;
+}
+.nav-item:hover:not(.nav-item__user) {
+    animation-name: nav-item;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.nav-item a:hover {
+    color: white;
+}
+
+/* "Fakes" an underline animation when hovering over a nav item */
+@keyframes nav-item {
+    0% {background-image: linear-gradient(white, white);
+        background-size: 0% 2px;
+        background-position: bottom center;
+        background-repeat: no-repeat;}
+    100% {background-image: linear-gradient(white, white);
+        background-size: 80% 2px;
+        background-position: bottom center;
+        background-repeat: no-repeat;}
+}
+
+.nav-item__user {
+    background-color: #fd8f00;
+    border-radius: 2em; 
+}
+
+#new-post {
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+#new-post button {
+    margin-top: 1em;
+}
+
+#new-post .card-header {
+    background-image: linear-gradient(175deg, rgb(255, 255, 255), rgb(0, 229, 255));
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 1px 1px white;
+}
+
+#new-post textarea {
+    height: 7em;
+}
+
+#pagination {
+    padding-bottom: 0.5em;
+}
+
+.post__cancel-button {
+    visibility: hidden; 
+}
+
+.post {
+    padding-bottom: 1em;
+}
+
+.post a {
+    padding-top: 10px;;
+    padding-left: 0;
+}
+
+.post textarea {
+    height: 5.5em;
+}
+
+.post__content {
+    white-space: pre-wrap;
+    margin-bottom: 22px;
+}
+
+.post__edit-button {
+    text-align: right;
+}
+
+.post__save-button {
+    visibility: hidden; 
+}
+
+.post__timestamp {
+    font-size: 80%;
+    color: grey;
+    height: 1em;
+}
+
+.profile__all-posts {
+    padding: 20px;
+    background-image: linear-gradient(175deg, rgb(255, 255, 255), lightgray);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.profile__all-posts-row {
+    padding-bottom: 2em;
+    
+}
+
+.profile__header-row {
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+.profile__header {
+    background-image: linear-gradient(175deg, rgb(255, 255, 255), rgb(0, 229, 255));
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 1px 1px white;
+}

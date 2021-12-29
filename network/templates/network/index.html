@@ -1,0 +1,22 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center" id="new-post">
+        <div class="col col-sm-5">
+            <div class="card">
+                <div class="card-header">
+                    What do you want to say?
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
