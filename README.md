@@ -1,4 +1,10 @@
 # Study together!
+#### Link: https://studytogetherapp.herokuapp.com/
+
+![Listings](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/study.gif?raw=true)
+
+![Listings](https://github.com/Andreas1593/CS50W/tree/Final-Project/finalproject/study/static/images/mobile.gif?raw=true)
+
 #### Description:
 
 ##### General
